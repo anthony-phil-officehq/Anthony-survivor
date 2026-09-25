@@ -1,6 +1,6 @@
 ---
 title: System overview
-sidebar_position: 1
+sidebar_position: 2
 description: How the OfficeHQ telephony system fits together, and what each of its four repositories is responsible for.
 ---
 
@@ -10,12 +10,14 @@ OfficeHQ runs a telephony platform for a call-answering business that sells thro
 
 The platform is made up of four systems, each kept in its own repository:
 
-| System | Repository id | Role in one line |
+| System | Repository | Role in one line |
 |--------|---------------|------------------|
-| OFIS | `ofis` | Legacy billing and client-management platform used by staff |
-| Client Portal | `client-portal-v2` | Self-service portal where clients manage their own settings |
-| Contact Centre | `contact-centre` | Backend that makes live call-routing decisions |
-| QConnect | `qconnect` | Agent-facing user interface built on Twilio Flex |
+| OFIS | [`ofis`](https://github.com/OfficeHQ-Pty-Ltd/ofis) | Legacy billing and client-management platform used by staff |
+| Client Portal | [`client-portal-v2`](https://github.com/OfficeHQ-Pty-Ltd/client-portal-v2) | Self-service portal where clients manage their own settings |
+| Contact Centre | [`contact-centre`](https://github.com/OfficeHQ-Pty-Ltd/contact-centre) | Backend that makes live call-routing decisions |
+| QConnect | [`qconnect`](https://github.com/OfficeHQ-Pty-Ltd/qconnect) | Agent-facing user interface built on Twilio Flex |
+
+The repositories are private. The links open only for members of the OfficeHQ GitHub organisation. Other readers see a GitHub 404 page. Contact: [Jonathon Wei](mailto:jonathon.w@officehq.com.au)
 
 ## Key terms
 
@@ -47,10 +49,13 @@ Configuration is edited in the two legacy systems. It is copied into Contact Cen
 
 ## Repositories
 
+Each repository below links to its GitHub page. Access requires membership of the OfficeHQ GitHub organisation.
+
 ### OFIS (`ofis`)
 
 | | |
 |---|---|
+| **Repository** | [OfficeHQ-Pty-Ltd/ofis](https://github.com/OfficeHQ-Pty-Ltd/ofis) |
 | **Purpose** | Multi-tenant billing and client-management platform for the answering-service reseller business. Used by internal staff. |
 | **Source of truth for** | Reseller, client, and billing data. |
 | **Stack** | ASP.NET MVC 5 on .NET Framework 4.8, NHibernate (FluentNHibernate), MySQL, SQL Server. Runs as Windows containers on AWS. |
@@ -71,6 +76,7 @@ OFIS uses one shared MySQL database for reseller metadata, one MySQL database pe
 
 | | |
 |---|---|
+| **Repository** | [OfficeHQ-Pty-Ltd/client-portal-v2](https://github.com/OfficeHQ-Pty-Ltd/client-portal-v2) |
 | **Purpose** | Customer self-service: clients view and change their own receptionist and call-handling settings, invoices, and payments. |
 | **Source of truth for** | Client-configured settings: company information, greetings, and call plans. |
 | **Stack** | .NET 9 (ASP.NET Core Web API, EF Core), React frontends, SQL Server and MariaDB, AWS Cognito for authentication. |
@@ -89,6 +95,7 @@ The repository holds several systems that are deployed independently:
 
 | | |
 |---|---|
+| **Repository** | [OfficeHQ-Pty-Ltd/contact-centre](https://github.com/OfficeHQ-Pty-Ltd/contact-centre) |
 | **Purpose** | Modern backend that serves live calls: it decides how each call is routed and records what happens on every call. |
 | **Source of truth for** | Live call-routing decisions and call event history. Configuration still comes from OFIS and Client Portal and is synchronised in. |
 | **Stack** | .NET 9, PostgreSQL, Twilio, Debezium, AWS (SNS, SQS, S3). Hasura provides the GraphQL layer over the Answering database. |
@@ -108,6 +115,7 @@ Each folder under `src/` is an independent service or library:
 
 | | |
 |---|---|
+| **Repository** | [OfficeHQ-Pty-Ltd/qconnect](https://github.com/OfficeHQ-Pty-Ltd/qconnect) |
 | **Purpose** | The user interface agents and supervisors use to handle calls. It is a customised fork of Twilio's Flex Project Template. |
 | **Source of truth for** | The agent experience in Twilio Flex. It does not access the other systems' databases directly. It works through Twilio Flex and TaskRouter, its own serverless functions, and backend APIs such as Contact Centre's Answering GraphQL API. |
 | **Stack** | React 17, Twilio Flex UI 2.x, Twilio Serverless functions, TypeScript. |
@@ -129,4 +137,4 @@ QConnect replaced the earlier Flex 1.0 plugins. Those plugins used to live in th
 
 ## Related pages
 
-- [Getting started](../onboarding/getting-started.md)
+- [Team overview](./team.md)
