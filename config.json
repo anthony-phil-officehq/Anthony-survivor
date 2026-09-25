@@ -1,0 +1,51 @@
+{
+  "project": "OfficeHQ",
+  "system": "telephony_system",
+  "workspaceRoot": "../Source",
+  "repositories": [
+    {
+      "id": "ofis",
+      "name": "OFIS",
+      "description": "Legacy multi-tenant billing/client-management platform. Source of truth for reseller/client/billing data.",
+      "github": "OfficeHQ-Pty-Ltd/ofis",
+      "url": "https://github.com/OfficeHQ-Pty-Ltd/ofis.git",
+      "localPath": "../Source/ofis",
+      "defaultBranch": "master",
+      "stack": ["ASP.NET MVC 5", ".NET Framework 4.8", "MySQL", "SQL Server"],
+      "entryDoc": "../Source/ofis/CLAUDE.md"
+    },
+    {
+      "id": "client-portal-v2",
+      "name": "Client Portal",
+      "description": "Customer self-service backend plus CPv2/CPv3 frontends, Notifications and Zapier services. Source of truth for client-configured settings (company info, greetings, call plans).",
+      "github": "OfficeHQ-Pty-Ltd/client-portal-v2",
+      "url": "https://github.com/OfficeHQ-Pty-Ltd/client-portal-v2.git",
+      "localPath": "../Source/client-portal-v2",
+      "defaultBranch": "main",
+      "stack": [".NET 9", "React", "MariaDB"],
+      "entryDoc": "../Source/client-portal-v2/CLAUDE.md"
+    },
+    {
+      "id": "contact-centre",
+      "name": "Contact Centre",
+      "description": "Modern backend serving live calls and call-routing decisions. Syncs data from OFIS/Client Portal via Debezium CDC into PostgreSQL.",
+      "github": "OfficeHQ-Pty-Ltd/contact-centre",
+      "url": "https://github.com/OfficeHQ-Pty-Ltd/contact-centre.git",
+      "localPath": "../Source/contact-centre",
+      "defaultBranch": "master",
+      "stack": [".NET 9", "PostgreSQL", "Twilio", "Debezium"],
+      "entryDoc": "../Source/contact-centre/CLAUDE.md"
+    },
+    {
+      "id": "qconnect",
+      "name": "QConnect",
+      "description": "Twilio Flex 2.0 agent-facing UI, a customized fork of Twilio's Flex Project Template.",
+      "github": "OfficeHQ-Pty-Ltd/qconnect",
+      "url": "https://github.com/OfficeHQ-Pty-Ltd/qconnect.git",
+      "localPath": "../Source/qconnect",
+      "defaultBranch": "main",
+      "stack": ["React 17", "Twilio Flex", "Twilio Serverless"],
+      "entryDoc": "../Source/qconnect/README.md"
+    }
+  ]
+}
